@@ -73,36 +73,38 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </Flex>
           </Flex>
         )}
-        {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
-          <Column flex={7} gap="16">
-            {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
-            {description?.trim() && (
-              <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
-                {description}
-              </Text>
-            )}
-            <Flex gap="24" wrap>
-              {content?.trim() && (
-                <SmartLink
-                  suffixIcon="arrowRight"
-                  style={{ margin: "0", width: "fit-content" }}
-                  href={href}
-                >
-                  <Text variant="body-default-s">View Details</Text>
-                </SmartLink>
+        <Column flex={7} gap="16">
+          {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
+            <>
+              {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
+              {description?.trim() && (
+                <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
+                  {description}
+                </Text>
               )}
-              {link && (
-                <SmartLink
-                  suffixIcon="arrowUpRightFromSquare"
-                  style={{ margin: "0", width: "fit-content" }}
-                  href={link}
-                >
-                  <Text variant="body-default-s">Live Demo</Text>
-                </SmartLink>
-              )}
-            </Flex>
-          </Column>
-        )}
+              <Flex gap="24" wrap>
+                {content?.trim() && (
+                  <SmartLink
+                    suffixIcon="arrowRight"
+                    style={{ margin: "0", width: "fit-content" }}
+                    href={href}
+                  >
+                    <Text variant="body-default-s">View Details</Text>
+                  </SmartLink>
+                )}
+                {link && (
+                  <SmartLink
+                    suffixIcon="arrowUpRightFromSquare"
+                    style={{ margin: "0", width: "fit-content" }}
+                    href={link}
+                  >
+                    <Text variant="body-default-s">Live Demo</Text>
+                  </SmartLink>
+                )}
+              </Flex>
+            </>
+          )}
+        </Column>
       </Flex>
     </Column>
   );
