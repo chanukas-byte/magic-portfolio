@@ -10,7 +10,7 @@ const ServicesPage: FC = () => {
     <div className={s.services}>
       <div className={s.hero}>
         <h1>My Services</h1>
-        <p>Here's what I can do for you.</p>
+        <p>Here&apos;s what I can do for you.</p>
       </div>
       <ServicesList services={services} />
     </div>

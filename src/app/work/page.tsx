@@ -293,11 +293,11 @@ function GithubProjectsGrid() {
 
   const tabs = [
     { id: 'all', label: 'All Projects', icon: 'grid' },
-    { id: 'featured', label: 'Featured', icon: 'star' },
-    { id: 'recent', label: 'Recent', icon: 'clock' },
+    { id: 'featured', label: 'Featured', icon: 'check' },
+    { id: 'recent', label: 'Recent', icon: 'calendar' },
     { id: 'web', label: 'Web Apps', icon: 'globe' },
-    { id: 'mobile', label: 'Mobile', icon: 'smartphone' },
-    { id: 'ai', label: 'AI/ML', icon: 'brain' }
+    { id: 'mobile', label: 'Mobile', icon: 'grid' },
+    { id: 'ai', label: 'AI/ML', icon: 'sparkles' }
   ];
 
   return (

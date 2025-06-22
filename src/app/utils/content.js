@@ -15,7 +15,8 @@ export function loadServices() {
       const { data } = matter(fileContents);
       return {
         slug,
-        ...data,
+        title: data.title,
+        description: data.description,
       };
     });
   return allServicesData;
@@ -30,7 +31,8 @@ export function loadService(slug) {
   const { data, content } = matter(fileContents);
   return {
     slug,
-    meta: data,
+    title: data.title,
+    description: data.description,
     content,
   };
 } 

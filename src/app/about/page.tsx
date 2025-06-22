@@ -18,6 +18,15 @@ import styles from "./about.module.scss";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 
+interface TimelineItem {
+  type: string;
+  title: string;
+  date: string;
+  icon: string;
+  color: string;
+  details: React.ReactNode;
+}
+
 export default function About() {
   const [typedName, setTypedName] = useState('');
   const roles = person.role.split("|").map(r => r.trim());
@@ -31,7 +40,7 @@ export default function About() {
       }, 100);
       return () => clearTimeout(timeoutId);
     }
-  }, [typedName, person.name]);
+  }, [typedName]);
 
   // Cycling effect for roles
   useEffect(() => {
@@ -57,7 +66,7 @@ export default function About() {
         }}
       />
       
-      <Flex direction="column" align="center" justify="center" className={styles.header}>
+      <Flex direction="column" align="center" horizontal="center" className={styles.header}>
         {about.avatar.display && (
           <>
             <Avatar src={person.avatar} size="xl" className={styles.avatar} />
@@ -124,7 +133,7 @@ export default function About() {
           My Journey
         </Heading>
         <div className={styles.timeline}>
-          {about.timeline.map((item, idx) => {
+          {(about.timeline as TimelineItem[]).map((item, idx) => {
             const isLeft = idx % 2 === 0;
             return (
               <div key={item.title + idx} className={`${styles.timelineNode} ${isLeft ? styles.left : styles.right}`}>

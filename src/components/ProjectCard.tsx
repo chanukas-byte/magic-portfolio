@@ -64,10 +64,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               {title}
             </Heading>
             <Flex gap="8" wrap>
-              <Badge background="primary-alpha-weak" paddingX="12" paddingY="4" onBackground="neutral-strong">
+              <Badge background="brand-alpha-weak" paddingX="12" paddingY="4" onBackground="neutral-strong">
                 Data Science
               </Badge>
-              <Badge background="secondary-alpha-weak" paddingX="12" paddingY="4" onBackground="neutral-strong">
+              <Badge background="neutral-alpha-weak" paddingX="12" paddingY="4" onBackground="neutral-strong">
                 Machine Learning
               </Badge>
             </Flex>

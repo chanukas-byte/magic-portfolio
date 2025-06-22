@@ -16,7 +16,7 @@ export const Tools = () => {
       }}>
         {about.tools.title}
       </Text>
-      <Flex gap="24" wrap="wrap" horizontal='center' vertical='center'>
+      <Flex gap="24" wrap horizontal='center' vertical='center'>
         {about.tools.skills.map((skill, index) => (
           <SkillCard key={skill.title} skill={skill as any} index={index} />
         ))}

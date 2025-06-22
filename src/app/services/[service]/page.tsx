@@ -20,8 +20,8 @@ const ServicePage: FC<ServicePageProps> = ({ params }) => {
   return (
     <div className={s.service}>
       <div className={s.hero}>
-        <h1>{service.meta.title}</h1>
-        <p>{service.meta.description}</p>
+        <h1>{service.title}</h1>
+        <p>{service.description}</p>
       </div>
       <div className={s.body}>
         <CustomMDX source={service.content} />
@@ -33,7 +33,7 @@ const ServicePage: FC<ServicePageProps> = ({ params }) => {
 export async function generateStaticParams() {
   const services = loadServices();
   return services.map((service) => ({
-    service: service.meta.slug,
+    service: service.slug,
   }));
 }
 

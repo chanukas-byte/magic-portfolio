@@ -6,6 +6,10 @@ import { formatDate } from "@/app/utils/formatDate";
 import { ScrollToHash, CustomMDX } from "@/components";
 import { Metadata } from "next";
 
+interface Person {
+  avatar: string;
+}
+
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPostsServer(["src", "app", "work", "projects"]);
   return posts.map((post) => ({
@@ -48,7 +52,7 @@ export default async function Project({
   }
 
   const avatars =
-    post.metadata.team?.map((person) => ({
+    post.metadata.team?.map((person: Person) => ({
       src: person.avatar,
     })) || [];
 

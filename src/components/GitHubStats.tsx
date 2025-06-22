@@ -255,6 +255,7 @@ export const GitHubStats = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 style={{ textDecoration: 'none' }}
+                whileHover={{ y: -2 }}
               >
                 <Card
                   background="brand-alpha-weak"
@@ -267,9 +268,6 @@ export const GitHubStats = () => {
                     gap: '8px',
                     cursor: 'pointer',
                     transition: 'transform 0.2s ease',
-                    ':hover': {
-                      transform: 'translateY(-2px)',
-                    },
                   }}
                 >
                   <Heading
@@ -284,7 +282,7 @@ export const GitHubStats = () => {
                   >
                     {repo.description}
                   </Text>
-                  <Flex justify="between" items="center">
+                  <Flex horizontal="space-between" vertical="center">
                     <Badge
                       background="neutral-alpha-weak"
                       onBackground="neutral-strong"

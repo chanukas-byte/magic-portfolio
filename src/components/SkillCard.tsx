@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, easeInOut } from 'framer-motion';
 import { Card, Text, Column, Flex } from "@once-ui-system/core";
 
 interface Skill {
@@ -39,7 +39,7 @@ export const SkillCard: React.FC<{ skill: Skill; index: number }> = ({ skill, in
         transition: {
             duration: 5,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: easeInOut,
             delay: index * 0.2
         }
         },
@@ -72,7 +72,17 @@ export const SkillCard: React.FC<{ skill: Skill; index: number }> = ({ skill, in
                 <Column gap="m" horizontal='center' vertical='center' fillWidth fillHeight>
                     <Flex gap="s">
                         {skill.images && skill.images.map((image) => (
-                            <img key={image.alt} src={image.src} alt={image.alt} style={{ width: '40px', height: '40px' }} />
+                            <div
+                                key={image.alt}
+                                style={{
+                                    width: '40px',
+                                    height: '40px',
+                                    backgroundImage: `url(${image.src})`,
+                                    backgroundSize: 'contain',
+                                    backgroundPosition: 'center',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                            />
                         ))}
                     </Flex>
                     <Text variant="heading-default-m" align="center" style={{ color: '#8B5CF6' }}>

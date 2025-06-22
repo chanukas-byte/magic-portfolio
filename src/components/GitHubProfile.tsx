@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, easeInOut } from 'framer-motion';
 import { Card, Text, Column, Flex, Badge } from "@once-ui-system/core";
 import { social } from '@/resources';
 
@@ -72,7 +72,7 @@ export const GitHubProfile = () => {
       transition: {
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: easeInOut
       }
     }
   };
@@ -88,7 +88,7 @@ export const GitHubProfile = () => {
         }}>
           Programming Languages
         </Text>
-        <Flex gap="16" wrap="wrap">
+        <Flex gap="16" wrap={true}>
           {Object.entries(githubData.languages)
             .sort(([, a], [, b]) => b - a)
             .slice(0, 8)
@@ -138,7 +138,7 @@ export const GitHubProfile = () => {
         }}>
           Top Repositories
         </Text>
-        <Flex gap="24" wrap="wrap">
+        <Flex gap="24" wrap={true}>
           {githubData.topRepos.map((repo, index) => (
             <motion.div
               key={repo.name}

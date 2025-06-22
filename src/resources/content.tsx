@@ -1,5 +1,14 @@
 import { Logo } from "@once-ui-system/core";
 
+type TimelineItem = {
+  type: string;
+  title: string;
+  date: string;
+  icon: string;
+  color: string;
+  details: JSX.Element;
+};
+
 const person = {
   firstName: "Chanuka",
   lastName: "Senevirathne",
@@ -112,7 +121,7 @@ const about = {
         date: "2010 - 2018",
         icon: "graduationCap",
         description: <>
-          Achieved exceptional results in Ordinary Level (O/L) with <b>8 A's and 1 B</b>, and strong performance in Advanced Level (A/L) Engineering Technology Stream (B, C, C) with a Z-score of 1.13.
+          Achieved exceptional results in Ordinary Level (O/L) with <b>8 A&apos;s and 1 B</b>, and strong performance in Advanced Level (A/L) Engineering Technology Stream (B, C, C) with a Z-score of 1.13.
         </>,
       },
       {
@@ -276,7 +285,7 @@ const about = {
         },
     ]
   },
-  timeline: [],
+  timeline: [] as TimelineItem[],
 };
 
 const work = {
@@ -351,7 +360,7 @@ about.timeline = [
     icon: 'school',
     color: 'linear-gradient(135deg, #3182ce, #38a169)',
     details: <>
-      <b>Ordinary Level (O/L):</b> 8A's, 1B<br />
+      <b>Ordinary Level (O/L):</b> 8A&apos;s, 1B<br />
       <b>Advanced Level (A/L):</b> Engineering Technology Stream (B, C, C) — Z-score: 1.13
     </>,
   },
@@ -400,7 +409,16 @@ about.timeline = [
       <ul style={{display:'flex',flexWrap:'wrap',gap:'16px',listStyle:'none',padding:0,margin:0}}>
         {about.technical.skills.map((skill, i) => (
           <li key={i} style={{display:'flex',alignItems:'center',gap:'8px',background:'rgba(255,255,255,0.04)',borderRadius:'8px',padding:'8px 12px'}}>
-            <span style={{fontSize:'1.2em'}}><img src={skill.images?.[0]?.src || ''} alt={skill.title} style={{width:24,height:24,objectFit:'contain'}} /></span>
+            <span style={{fontSize:'1.2em'}}>
+              <div style={{
+                width: 24,
+                height: 24,
+                backgroundImage: `url(${skill.images?.[0]?.src || ''})`,
+                backgroundSize: 'contain',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }} />
+            </span>
             <span>{skill.title}</span>
           </li>
         ))}
@@ -409,7 +427,13 @@ about.timeline = [
   },
 ];
 
-const routes = {
+const display = {
+  location: true,
+  time: true,
+  themeSwitcher: true,
+};
+
+export const enabledRoutes: Record<string, boolean> = {
   "/": true,
   "/about": true,
   "/work": true,
@@ -419,11 +443,5 @@ const routes = {
   "/contact": false,
 };
 
-const display = {
-  location: true,
-  time: true,
-  themeSwitcher: true,
-};
-
-export { person, social, newsletter, home, about, work, blog, services, routes, display };
+export { person, social, newsletter, home, about, work, blog, services, display };
 

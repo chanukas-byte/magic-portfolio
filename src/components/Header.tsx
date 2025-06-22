@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { Fade, Flex, Line, ToggleButton } from "@once-ui-system/core";
 
-import { routes, display, person, about, work, services } from "@/resources";
+import { enabledRoutes, display, person, about, work, services, blog } from "@/resources";
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Header.module.scss";
 
@@ -74,11 +74,11 @@ export const Header = () => {
             zIndex={1}
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s" suppressHydrationWarning>
-              {routes["/"] && (
+              {(enabledRoutes as Record<string, boolean>)["/"] && (
                 <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
               )}
               <Line background="neutral-alpha-medium" vert maxHeight="24" />
-              {routes["/about"] && (
+              {(enabledRoutes as Record<string, boolean>)["/about"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
@@ -95,7 +95,7 @@ export const Header = () => {
                   />
                 </>
               )}
-              {routes["/work"] && (
+              {(enabledRoutes as Record<string, boolean>)["/work"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
@@ -112,24 +112,24 @@ export const Header = () => {
                   />
                 </>
               )}
-              {routes["/services"] && (
+              {(enabledRoutes as Record<string, boolean>)["/services"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
-                    prefixIcon="briefcase"
+                    prefixIcon="grid"
                     href="/services"
                     label={services.label}
                     selected={pathname.startsWith("/services")}
                   />
                   <ToggleButton
                     className="s-flex-show"
-                    prefixIcon="briefcase"
+                    prefixIcon="grid"
                     href="/services"
                     selected={pathname.startsWith("/services")}
                   />
                 </>
               )}
-              {routes["/blog"] && (
+              {(enabledRoutes as Record<string, boolean>)["/blog"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
