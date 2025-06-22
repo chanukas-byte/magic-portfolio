@@ -8,6 +8,8 @@ import {
   Heading,
   SmartLink,
   Text,
+  Badge,
+  Icon,
 } from "@once-ui-system/core";
 
 interface ProjectCardProps {
@@ -31,27 +33,44 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   link,
 }) => {
   return (
-    <Column fillWidth gap="m">
+    <Column 
+      fillWidth 
+      gap="m"
+      background="surface"
+      border="neutral-alpha-weak"
+      radius="l"
+      padding="l"
+      transition="micro-medium"
+      className="hover:shadow-lg"
+    >
       <Carousel
         sizes="(max-width: 960px) 100vw, 960px"
         items={images.map((image) => ({
           slide: image,
           alt: title,
         }))}
+        radius="m"
       />
       <Flex
         mobileDirection="column"
         fillWidth
-        paddingX="s"
         paddingTop="12"
         paddingBottom="24"
         gap="l"
       >
         {title && (
-          <Flex flex={5}>
+          <Flex flex={5} direction="column" gap="8">
             <Heading as="h2" wrap="balance" variant="heading-strong-xl">
               {title}
             </Heading>
+            <Flex gap="8" wrap>
+              <Badge background="primary-alpha-weak" paddingX="12" paddingY="4" onBackground="neutral-strong">
+                Data Science
+              </Badge>
+              <Badge background="secondary-alpha-weak" paddingX="12" paddingY="4" onBackground="neutral-strong">
+                Machine Learning
+              </Badge>
+            </Flex>
           </Flex>
         )}
         {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
@@ -69,7 +88,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={href}
                 >
-                  <Text variant="body-default-s">Read case study</Text>
+                  <Text variant="body-default-s">View Details</Text>
                 </SmartLink>
               )}
               {link && (
@@ -78,7 +97,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={link}
                 >
-                  <Text variant="body-default-s">View project</Text>
+                  <Text variant="body-default-s">Live Demo</Text>
                 </SmartLink>
               )}
             </Flex>

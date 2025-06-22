@@ -1,12 +1,52 @@
-import React from "react";
+'use client';
 
-import { Heading, Flex, Text, Button, Avatar, RevealFx, Column, Badge, Row, Meta, Schema } from "@once-ui-system/core";
-import { home, about, person, newsletter, baseURL, routes } from "@/resources";
-import { Mailchimp } from "@/components";
-import { Projects } from "@/components/work/Projects";
-import { Posts } from "@/components/blog/Posts";
+import React, { useState, useEffect } from "react";
+import styles from './HomeButtons.module.css';
+
+import {
+  Heading,
+  Flex,
+  Text,
+  Avatar,
+  Column,
+  Row,
+  Meta,
+  Schema,
+  Button,
+  Icon,
+} from "@once-ui-system/core";
+import { home, about, person, baseURL, social } from "@/resources";
+import {
+  GitHubProfile,
+  GitHubStats,
+  GitHubContributionGraph,
+  Skills,
+  Tools,
+} from "@/components";
+
+const roles = [
+    "Aspiring Data Engineer",
+    "Cloud Architect",
+    "ML Solutions Developer",
+    "Data Visualizer",
+    "Frontend Developer",
+    "AI-Driven Data Engineer",
+    "Full Stack Developer",
+    "Innovating with Data and AI",
+];
 
 export default function Home() {
+    const [currentRole, setCurrentRole] = useState(person.role);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const randomIndex = Math.floor(Math.random() * roles.length);
+            setCurrentRole(roles[randomIndex]);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
+
   return (
     <Column maxWidth="m" gap="xl" horizontal="center">
       <Schema
@@ -22,68 +62,72 @@ export default function Home() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Column fillWidth paddingY="24" gap="m">
-        <Column maxWidth="s">
-          {home.featured.display && (
-          <RevealFx fillWidth horizontal="start" paddingTop="16" paddingBottom="32" paddingLeft="12">
-            <Badge background="brand-alpha-weak" paddingX="12" paddingY="4" onBackground="neutral-strong" textVariant="label-default-s" arrow={false}
-              href={home.featured.href}>
-              <Row paddingY="2">{home.featured.title}</Row>
-            </Badge>
-          </RevealFx>
-          )}
-          <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="16">
-            <Heading wrap="balance" variant="display-strong-l">
-              {home.headline}
+      <Row
+        fillWidth
+        paddingY="32"
+        gap="m"
+        vertical="center"
+      >
+        <Column flex={2} vertical="center" gap="l">
+          <Column gap="m">
+            <Heading wrap="balance" variant="display-strong-l" style={{ color: '#8B5CF6' }}>
+              {person.name}
             </Heading>
-          </RevealFx>
-          <RevealFx translateY="8" delay={0.2} fillWidth horizontal="start" paddingBottom="32">
-            <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
-              {home.subline}
-            </Text>
-          </RevealFx>
-          <RevealFx paddingTop="12" delay={0.4} horizontal="start" paddingLeft="12">
-            <Button
-              id="about"
-              data-border="rounded"
-              href={about.path}
-              variant="secondary"
-              size="m"
-              weight="default"
-              arrowIcon
+            <Text
+              wrap="balance"
+              onBackground="brand-strong"
+              variant="heading-default-m"
+               style={{ height: '60px', transition: 'all 0.5s ease-in-out' }}
             >
-              <Flex gap="8" vertical="center" paddingRight="4">
-                {about.avatar.display && (
-                  <Avatar
-                    marginRight="8"
-                    style={{ marginLeft: "-0.75rem" }}
-                    src={person.avatar}
-                    size="m"
-                  />
-                )}
-                {about.title}
-              </Flex>
-            </Button>
-          </RevealFx>
+              {currentRole}
+            </Text>
+            <Text onBackground="neutral-medium" variant="body-default-s">
+              {person.bio}
+            </Text>
+          </Column>
+          <Flex gap="m" wrap>
+            <a
+              href="/cv/Chanuka Senevirathne-2.pdf"
+              download="Chanuka-Senevirathne-CV.pdf"
+              className={`${styles.homeButtons} ${styles.primary}`}
+            >
+              Download CV
+            </a>
+            <a
+              href={social.find((s) => s.name === "GitHub")?.link}
+              target="_blank"
+              className={`${styles.homeButtons} ${styles.secondary}`}
+            >
+              View GitHub
+            </a>
+          </Flex>
         </Column>
+        <Column flex={3} gap="m" paddingRight="s" horizontal="center">
+          <Avatar
+            src={person.avatar}
+            size="xl"
+          />
+          <Flex gap="m" paddingY="m">
+            {social.map((s) => (
+              <a href={s.link} target="_blank" key={s.name}>
+                <Icon name={s.icon as any} size="l" />
+              </a>
+            ))}
+          </Flex>
+        </Column>
+      </Row>
+      <Column fillWidth horizontal="center">
+        <GitHubProfile />
       </Column>
-      <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
-      </RevealFx>
-      {routes["/blog"] && (
-        <Flex fillWidth gap="24" mobileDirection="column">
-          <Flex flex={1} paddingLeft="l" paddingTop="24">
-            <Heading as="h2" variant="display-strong-xs" wrap="balance">
-              Latest from the blog
-            </Heading>
-          </Flex>
-          <Flex flex={3} paddingX="20">
-            <Posts range={[1, 2]} columns="2" />
-          </Flex>
-        </Flex>
-      )}
-      <Projects range={[2]} />
-      {newsletter.display && <Mailchimp newsletter={newsletter} />}
+      <Column fillWidth horizontal="center">
+        <Skills />
+      </Column>
+       <Column fillWidth horizontal="center">
+        <Tools />
+      </Column>
+      <Column fillWidth horizontal="center">
+        <GitHubContributionGraph />
+      </Column>
     </Column>
   );
 }

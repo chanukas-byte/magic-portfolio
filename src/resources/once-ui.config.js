@@ -4,11 +4,11 @@ import { home } from "./content";
 const baseURL = "https://demo.magic-portfolio.com";
 
 const routes = {
-  "/": true,
-  "/about": true,
-  "/work": true,
-  "/blog": true,
-  "/gallery": true,
+  "/": "/",
+  "/about": "/about",
+  "/work": "/work",
+  "/services": "/services",
+  "/gallery": "/gallery",
 };
 
 const display = {
@@ -23,33 +23,17 @@ const protectedRoutes = {
   "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
 };
 
-// Import and set font for each variant
-import { Geist } from "next/font/google";
-import { Geist_Mono } from "next/font/google";
+// Removed: import { Inter } from 'next/font/google'
 
-const heading = Geist({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  display: "swap",
-});
+const systemFontStack = {
+  variable: '', // No CSS variable needed for system fonts
+  style: { fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"' }
+};
 
-const body = Geist({
-  variable: "--font-body",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const label = Geist({
-  variable: "--font-label",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const code = Geist_Mono({
-  variable: "--font-code",
-  subsets: ["latin"],
-  display: "swap",
-});
+const heading = systemFontStack;
+const body = systemFontStack;
+const label = systemFontStack;
+const code = systemFontStack;
 
 const fonts = {
   heading: heading,

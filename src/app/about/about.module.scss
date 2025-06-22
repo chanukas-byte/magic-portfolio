@@ -1,0 +1,190 @@
+.aboutPage {
+  padding: 0 16px;
+}
+
+.header {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.avatar {
+  margin-bottom: 16px;
+}
+
+.info, .tags, .socials {
+  margin-bottom: 8px;
+}
+
+.name {
+  margin-bottom: 4px;
+  position: relative;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  &::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    position: absolute;
+    right: -8px;
+    top: 0;
+    -webkit-text-fill-color: #e5e7eb !important;
+  }
+}
+
+.role {
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.roleContainer {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+@keyframes blink {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.journeySection {
+  max-width: 900px;
+  margin: 40px auto 0;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.journeyTitle {
+  text-align: center;
+  margin-bottom: 60px;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.timeline {
+  position: relative;
+  width: 100%;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(139, 92, 246, 0.1);
+    transform: translateX(-50%);
+    z-index: 0;
+    border-radius: 2px;
+  }
+}
+
+.timelineNode {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  margin-bottom: 48px;
+
+  &.left {
+    justify-content: flex-start;
+  }
+}
+
+.timelineCard {
+  background: rgba(30, 27, 75, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-top: 4px solid;
+  border-image-slice: 1;
+  padding: 24px;
+  width: calc(50% - 40px);
+  position: relative;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
+  }
+}
+
+.timelineIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  box-shadow: 0 0 0 4px rgba(30, 27, 75, 1);
+}
+
+.left .timelineIcon {
+  right: -20px;
+  transform: translate(50%, -50%);
+}
+
+.right .timelineIcon {
+  left: -20px;
+  transform: translate(-50%, -50%);
+}
+
+.cardTitle {
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.cardDate {
+  font-style: italic;
+  margin-bottom: 12px;
+  font-size: 0.9em;
+}
+
+.cardDetails {
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timelineNode {
+    justify-content: flex-start;
+    padding-left: 60px;
+  }
+
+  .timelineCard {
+    width: 100%;
+  }
+
+  .timelineIcon {
+    left: 0;
+  }
+
+  .left .timelineIcon, .right .timelineIcon {
+    transform: translate(-50%, -50%);
+  }
+} 

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPosts } from "@/app/utils/utils";
+import { getPostsServer } from "@/app/utils/serverUtils";
 import { Meta, Schema, AvatarGroup, Button, Column, Flex, Heading, Media, Text } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
 import { formatDate } from "@/app/utils/formatDate";
@@ -7,7 +7,7 @@ import { ScrollToHash, CustomMDX } from "@/components";
 import { Metadata } from "next";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const posts = getPosts(["src", "app", "work", "projects"]);
+  const posts = getPostsServer(["src", "app", "work", "projects"]);
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -21,7 +21,7 @@ export async function generateMetadata({
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug) ? routeParams.slug.join('/') : routeParams.slug || '';
 
-  const posts = getPosts(["src", "app", "work", "projects"])
+  const posts = getPostsServer(["src", "app", "work", "projects"])
   let post = posts.find((post) => post.slug === slugPath);
 
   if (!post) return {};
@@ -41,7 +41,7 @@ export default async function Project({
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug) ? routeParams.slug.join('/') : routeParams.slug || '';
 
-  let post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slugPath);
+  let post = getPostsServer(["src", "app", "work", "projects"]).find((post) => post.slug === slugPath);
 
   if (!post) {
     notFound();

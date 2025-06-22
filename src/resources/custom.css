@@ -52,3 +52,48 @@
   --scheme-neutral-600-50: rgba(137,152,159,0.5);
   /*
 }*/
+
+/* New Global Animated Background */
+.global-animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1; /* Ensure it stays behind content */
+  background:
+    radial-gradient(circle at 15% 25%, rgba(var(--color-brand-rgb), 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(var(--color-accent-rgb), 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 40% 60%, rgba(var(--color-brand-rgb), 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 60% 10%, rgba(var(--color-accent-rgb), 0.02) 0%, transparent 40%);
+  background-size: 80% 80%, 70% 70%, 90% 90%, 60% 60%;
+  background-repeat: no-repeat;
+  animation: global-background-shift 20s ease-in-out infinite alternate;
+  filter: blur(80px);
+  opacity: 0.8;
+}
+
+@keyframes global-background-shift {
+  0% {
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%;
+  }
+  25% {
+    background-position: 10% 20%, 90% 80%, 40% 60%, 20% 90%;
+  }
+  50% {
+    background-position: 20% 40%, 80% 60%, 60% 40%, 40% 70%;
+  }
+  75% {
+    background-position: 30% 60%, 70% 40%, 70% 20%, 60% 50%;
+  }
+  100% {
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%;
+  }
+}
+
+/* Previous animated-background (if any, ensure it's removed or modified if no longer needed) */
+.animated-background {
+  display: none; /* Hide if no longer used */
+}

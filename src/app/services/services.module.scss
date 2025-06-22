@@ -1,0 +1,182 @@
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.services {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  perspective: 1200px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: -webkit-linear-gradient(45deg, var(--brand-background-strong), var(--accent-background-strong));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: var(--neutral-on-background-weak);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+}
+
+.service {
+  background: var(--neutral-background);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-decoration: none;
+  color: var(--neutral-on-background);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform, box-shadow;
+}
+
+.service:before, .service:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.service:before {
+  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), var(--brand-alpha-faint), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.service:after {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(120deg, var(--accent-background-strong), var(--brand-background-strong), var(--accent-background-strong));
+  background-size: 300% 300%;
+  border-radius: 18px;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.service:hover:before {
+  opacity: 1;
+}
+
+.service:hover:after {
+  opacity: 1;
+  animation: gradient-animation 3s ease infinite;
+}
+
+.service > * {
+  position: relative;
+  z-index: 2;
+}
+
+.service h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--brand-on-background);
+}
+
+.service p {
+  color: var(--neutral-on-background-weak);
+}
+
+.service:hover {
+  transform: translateY(-8px) scale(1.02) rotateX(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 40px var(--brand-alpha-weak);
+}
+
+.servicesPage {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header {
+  max-width: 800px;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  perspective: 1000px;
+}
+
+.cardWrapper {
+  position: relative;
+}
+
+.cardLink {
+  text-decoration: none;
+  display: block;
+}
+
+.card {
+  border-radius: 16px;
+  padding: 32px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(20px);
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.card:hover .cardGlow {
+  opacity: 0.6;
+}
+
+.iconWrapper {
+  opacity: 0.95;
+  z-index: 1;
+}
+
+.cardDescription {
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .cardsContainer {
+    grid-template-columns: 1fr;
+  }
+} 

@@ -1,0 +1,33 @@
+.animatedSection {
+  text-align: center;
+  perspective: 1000px;
+}
+
+.animatedText {
+  display: inline-block;
+  font-weight: bold;
+  background: linear-gradient(to right, #6EE7B7, #3B82F6, #9333EA);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-animation 5s ease-in-out infinite;
+  transform-origin: center;
+  animation: text-reveal 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards, gradient-animation 5s ease-in-out infinite;
+}
+
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes text-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+} 
