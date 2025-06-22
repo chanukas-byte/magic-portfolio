@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { mdxComponents } from '@/components/mdx';
+import { CustomMDX } from '@/components/mdx';
 import { loadService, loadServices } from '@/app/utils/content';
 import { notFound } from 'next/navigation';
 import s from './service.module.scss';
@@ -25,7 +24,7 @@ const ServicePage: FC<ServicePageProps> = ({ params }) => {
         <p>{service.meta.description}</p>
       </div>
       <div className={s.body}>
-        <MDXRemote source={service.content} components={mdxComponents} />
+        <CustomMDX source={service.content} />
       </div>
     </div>
   );
@@ -34,7 +33,7 @@ const ServicePage: FC<ServicePageProps> = ({ params }) => {
 export async function generateStaticParams() {
   const services = loadServices();
   return services.map((service) => ({
-    service: service.slug,
+    service: service.meta.slug,
   }));
 }
 

@@ -16,7 +16,7 @@ const person = {
 
 const newsletter = {
   display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
+  title: <>Subscribe to {person.firstName}&apos;s Newsletter</>,
   description: (
     <>
       Gain exclusive insights into cutting-edge AI, robust data engineering practices, and scalable cloud solutions.
